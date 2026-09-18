@@ -1,0 +1,8 @@
+select continent, floor(avg(population))from
+(select c.code, c.name as country_name, c.continent, d.id, d.name as city_name, d.
+population from country as c
+JOIN
+city as d
+ON
+c.code = d.countrycode) b group by continent;
+
