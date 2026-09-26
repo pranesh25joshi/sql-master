@@ -1,0 +1,55 @@
+# Challenges
+
+![Platform](https://img.shields.io/badge/Platform-HackerRank-blue) ![Difficulty](https://img.shields.io/badge/Difficulty-Unknown-orange) ![Language](https://img.shields.io/badge/Language-Language-green)
+
+## 🧩 Problem Summary
+
+.MathJax_SVG_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax_SVG .MJX-monospace {font-family: monospace}
+.MathJax_SVG .MJX-sans-serif {font-family: sans-serif}
+.MathJax_SVG {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax_SVG * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.mjx-svg-href {fill: blue; stroke: blue}
+Julia asked her students to create some coding challenges. 
+Write a query to print the hacker_id, name, and the total number
+
+## 💻 Solution
+
+```language
+SELECT
+    h.hacker_id,
+    h.name,
+    COUNT(c.challenge_id) AS total_challenges
+FROM Hackers h
+JOIN Challenges c
+ON h.hacker_id = c.hacker_id
+GROUP BY h.hacker_id, h.name
+HAVING
+    COUNT(c.challenge_id) = (
+        SELECT MAX(cnt)
+        FROM (
+            SELECT COUNT(*) AS cnt
+            FROM Challenges
+            GROUP BY hacker_id
+        ) t
+    )
+    OR
+    COUNT(c.challenge_id) IN (
+        SELECT cnt
+        FROM (
+            SELECT COUNT(*) AS cnt
+            FROM Challenges
+            GROUP BY hacker_id
+        ) x
+```
+
+## 🏷️ Tags
+
+`HackerRank` `Coding` `Language`
+
+## 📅 Solved On
+
+2026-09-26
+
+---
+*Auto-pushed by [CodePush Extension](https://github.com)*
