@@ -1,0 +1,25 @@
+    name, 
+    sum(max_score) as total_score
+from
+    (select 
+        name,
+        hacker_id,
+        challenge_id,
+        max(score) as max_score
+    from 
+        (select 
+            h.name,
+            s.submission_id,
+            s.hacker_id,
+            s.challenge_id,
+            s.score
+        from 
+            hackers h 
+        join submissions s 
+        on h.hacker_id = s.hacker_id) as sub
+    group by name, hacker_id, challenge_id ) t 
+    hacker_id, 
+*/
+select 
+Enter your query here.
+/*
