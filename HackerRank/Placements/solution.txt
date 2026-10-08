@@ -1,0 +1,22 @@
+select 
+    s.name
+from 
+    (select 
+        sub.id,
+        sub.salary,
+        sub.friend_id,
+        k.salary as friend_salary 
+    from 
+        (select 
+            f.id,
+            p.salary,
+            f.friend_id
+        from friends f 
+        JOIN packages p 
+        on f.id = p.id) sub
+    join packages k 
+    on sub.friend_id = k.id) h 
+join students s 
+on s.id = h.id 
+where h.friend_salary > h.salary 
+order by h.friend_salary;
