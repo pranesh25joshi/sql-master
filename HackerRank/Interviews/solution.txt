@@ -1,0 +1,25 @@
+/*
+Enter your query here.
+*/
+
+
+SELECT
+    colleges.contest_id,
+    contests.hacker_id,
+    contests.name,
+    SUM(sub3.total_submissions) AS total_submissions,
+    SUM(sub3.total_accepted_submissions) AS total_accepted_submissions,
+    SUM(sub3.total_views) AS total_views,
+    SUM(sub3.total_unique_views) AS total_unique_views
+FROM
+(
+    SELECT
+        c.challenge_id,
+        c.college_id,
+        COALESCE(ss.total_submissions,0) AS total_submissions,
+        COALESCE(ss.total_accepted_submissions,0) AS total_accepted_submissions,
+        COALESCE(vs.total_views,0) AS total_views,
+        COALESCE(vs.total_unique_views,0) AS total_unique_views
+    FROM challenges c
+
+    LEFT JOIN
