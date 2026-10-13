@@ -1,26 +1,25 @@
-        FROM
-        (
-            SELECT
-                submission_date,
-            submission_date,
-            MAX(cnt) AS max_cnt
-    JOIN
-    (
-        SELECT
-    ) t1
-
-        FROM submissions
-        GROUP BY submission_date, hacker_id
-            COUNT(*) AS cnt
-            hacker_id,
     SELECT
         t1.submission_date,
         MIN(t1.hacker_id) AS hacker_id
-    FROM
-    (
-        SELECT
-            submission_date,
 (
 JOIN
 
 ) d
+    GROUP BY s1.submission_date
+          AND s2.submission_date <= s1.submission_date
+    ) = DATEDIFF(s1.submission_date, '2016-03-01') + 1
+        WHERE s2.hacker_id = s1.hacker_id
+        FROM submissions s2
+        SELECT COUNT(DISTINCT s2.submission_date)
+    WHERE (
+    FROM submissions s1
+        COUNT(DISTINCT s1.hacker_id) AS unique_hackers
+        s1.submission_date,
+    SELECT
+(
+FROM
+    h.name
+    t.hacker_id,
+    d.unique_hackers,
+    d.submission_date,
+SELECT
