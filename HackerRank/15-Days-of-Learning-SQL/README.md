@@ -15,31 +15,31 @@ Julia conducted a  days of learning SQL contest. The start date of the contest w
 ## 💻 Solution
 
 ```language
-        FROM
-        (
-            SELECT
-                submission_date,
-                hacker_id,
-                COUNT(*) AS cnt
-            FROM submissions
-            GROUP BY submission_date, hacker_id
-        ) t2
-        GROUP BY submission_date
-    ) t3
+    SELECT
+        t1.submission_date,
+        MIN(t1.hacker_id) AS hacker_id
+(
+JOIN
 
-    ON t1.submission_date = t3.submission_date
-    AND t1.cnt = t3.max_cnt
-
-    GROUP BY t1.submission_date
-) t
-
-ON d.submission_date = t.submission_date
-
-JOIN hackers h
-ON t.hacker_id = h.hacker_id
-
-ORDER BY d.submission_date;
-
+) d
+    GROUP BY s1.submission_date
+          AND s2.submission_date <= s1.submission_date
+    ) = DATEDIFF(s1.submission_date, '2016-03-01') + 1
+        WHERE s2.hacker_id = s1.hacker_id
+        FROM submissions s2
+        SELECT COUNT(DISTINCT s2.submission_date)
+    WHERE (
+    FROM submissions s1
+        COUNT(DISTINCT s1.hacker_id) AS unique_hackers
+        s1.submission_date,
+    SELECT
+(
+FROM
+    h.name
+    t.hacker_id,
+    d.unique_hackers,
+    d.submission_date,
+SELECT
 ```
 
 ## 🏷️ Tags
