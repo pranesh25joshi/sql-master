@@ -2,23 +2,25 @@
         (
             SELECT
                 submission_date,
-                hacker_id,
-                COUNT(*) AS cnt
-            FROM submissions
-            GROUP BY submission_date, hacker_id
-        ) t2
-        GROUP BY submission_date
-    ) t3
+            submission_date,
+            MAX(cnt) AS max_cnt
+    JOIN
+    (
+        SELECT
+    ) t1
 
-    ON t1.submission_date = t3.submission_date
-    AND t1.cnt = t3.max_cnt
+        FROM submissions
+        GROUP BY submission_date, hacker_id
+            COUNT(*) AS cnt
+            hacker_id,
+    SELECT
+        t1.submission_date,
+        MIN(t1.hacker_id) AS hacker_id
+    FROM
+    (
+        SELECT
+            submission_date,
+(
+JOIN
 
-    GROUP BY t1.submission_date
-) t
-
-ON d.submission_date = t.submission_date
-
-JOIN hackers h
-ON t.hacker_id = h.hacker_id
-
-ORDER BY d.submission_date;
+) d
