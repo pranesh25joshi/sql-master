@@ -1,0 +1,18 @@
+/*
+Enter your query here.
+*/
+WITH RECURSIVE numbers AS (
+    SELECT 2 AS n
+    UNION ALL
+    SELECT n + 1
+    FROM numbers
+    WHERE n < 1000
+)
+SELECT GROUP_CONCAT(n SEPARATOR '&')
+FROM numbers num
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM numbers d
+    WHERE d.n BETWEEN 2 AND FLOOR(SQRT(num.n))
+      AND MOD(num.n, d.n) = 0
+);
